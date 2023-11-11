@@ -1,0 +1,71 @@
+@import "./../colors.scss";
+
+.header {
+    height: 140px;
+    border-bottom: 2px solid $lightgrey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-logo {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    &-logo__text {
+        display: flex;
+        flex-direction: column;
+        line-height: 22px;
+    }
+
+    &-logo__bold {
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: 800;
+    }
+
+    &-logo__thin {
+        color: $grey;
+    }
+
+    &-logo__img {
+        height: 50px;
+        width: 50px;
+    }
+}
+
+.header-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+    background: $wood;
+    gap: 10px;
+    color: $white;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    position: relative;
+
+    &__items {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__price {}
+
+    &__divided {
+        &::after {
+            content: "";
+            position: absolute;
+            border: .5px solid $lightgrey;
+            right: 76px;
+            top: 13px;
+            height: 50%;
+        }
+    }
+}
