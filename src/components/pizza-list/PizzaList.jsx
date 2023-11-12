@@ -8,7 +8,17 @@ const PizzaList = (props) => {
         <div className='pizzaList'>
             <SortItems />
             <h2>Все пиццы</h2>
-            <PizzaCard />
+            <div className="pizzaCards">
+                <PizzaCard />
+                <PizzaCard />
+                <PizzaCard />
+                <PizzaCard />
+                <PizzaCard />
+                <PizzaCard />
+                <PizzaCard />
+                <PizzaCard />
+            </div>
+
         </div>
     );
 }

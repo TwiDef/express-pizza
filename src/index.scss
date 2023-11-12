@@ -94,7 +94,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $echoblue;
-  height: 100vh;
+  padding: 100px 0 100px;
+  max-height: auto;
+  height: 100%;
 }
 
 code {
