@@ -9,7 +9,7 @@ const Header = (props) => {
             <div className="header-logo">
                 <img src={pizzaLogo} alt="logo" className="header-logo__img" />
                 <div className="header-logo__text">
-                    <span className='header-logo__bold'>express pizza</span>
+                    <h1 className='header-logo__bold'>express pizza</h1>
                     <span className='header-logo__thin'>самая быстая доставка</span>
                 </div>
             </div>

@@ -1,0 +1,41 @@
+@import './../colors.scss';
+
+.sorting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-btn-block {
+        display: flex;
+        gap: 10px;
+    }
+
+    &-btn {
+        padding: 14px 16px;
+        border-radius: 30px;
+        border: none;
+        background-color: $lightgrey;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    &-block {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 16px;
+        font-weight: 700;
+
+        a {
+            color: $wood;
+            text-decoration: underline;
+        }
+    }
+
+    &-block__arrow {
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+    }
+}
