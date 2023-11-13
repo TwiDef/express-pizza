@@ -1,7 +1,8 @@
 import React from 'react';
 import cartIcon from './../../assets/img/cart.svg';
-import pizzaItem from './../../assets/img/pizza-item.png';
+
 import './Cart.scss';
+import CartItem from '../cart-item/CartItem';
 
 const Cart = (props) => {
     return (
@@ -13,22 +14,17 @@ const Cart = (props) => {
                 </div>
                 <button className='cart-header__remove'>Очистить корзину</button>
             </div>
-            <div className="cart-item">
-                <div className="cart-item__about">
-                    <img src={pizzaItem} alt="pizzalogo" className="cart-item__img" />
-                    <div className="cart-item__info">
-                        <p className="cart-item__title">Сырный цыпленок</p>
-                        <p className="cart-item__type">тонкое тесто, 26см</p>
-                    </div>
+            <CartItem />
+            <CartItem />
+            <CartItem />
+            <div className="cart-footer">
+                <div className="cart-footer__total">
+                    <p className="cart-footer__total-count">Всего пицц: <span>3is</span></p>
+                    <p className="cart-footer__total-price">Сумма заказа: <span>900p</span></p>
                 </div>
-                <div className="cart-item__set">
-                    <div className='cart-item__quantity'>
-                        <button>-</button>
-                        <span className='cart-item__quantity-num'>2</span>
-                        <button>+</button>
-                    </div>
-                    <p className='cart-item__price'>770p</p>
-                    <button className='cart-item__delete'>&times;</button>
+                <div className="cart-footer__btns">
+                    <button className="cart-footer__backward-btn">&#x3c; Вернутся назад</button>
+                    <button className="cart-footer__paid-btn">Оплатить сейчас</button>
                 </div>
             </div>
         </div>

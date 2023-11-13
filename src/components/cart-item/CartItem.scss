@@ -1,0 +1,97 @@
+@import './../colors.scss';
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid $lightgrey;
+    padding: 30px 0 30px;
+
+    &__about {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        line-height: 26px;
+    }
+
+    &__img {
+        width: 80px;
+        height: 80px;
+    }
+
+    &__title {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    &__type {
+        font-size: 18px;
+        font-weight: 500;
+        opacity: .5;
+    }
+
+    &__set {
+        display: flex;
+        gap: 94px;
+    }
+
+    &__quantity {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        button {
+            width: 32px;
+            height: 32px;
+            background-color: $wood;
+            border: none;
+            color: $white;
+            font-size: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all .2s;
+
+            &:hover {
+                scale: 1.1;
+            }
+
+            &:active {
+                scale: 1;
+            }
+        }
+
+        &-num {
+            font-size: 22px;
+            font-weight: 700;
+        }
+    }
+
+    &__price {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    &__delete {
+        border: 2px solid $grey;
+        border-radius: 50%;
+        background: none;
+        font-size: 24px;
+        opacity: .5;
+        height: 32px;
+        width: 32px;
+        cursor: pointer;
+        transition: all .2s;
+
+        &:hover {
+            background-color: $grey;
+            color: $white;
+        }
+
+        &:active {
+            scale: 0.9;
+        }
+    }
+}

@@ -8,7 +8,7 @@ const SortItems = (props) => {
         <div className='sorting'>
             <div className="sorting-btn-block">
                 {typesOfPizza.map((type, i) => {
-                    return <button className='sorting-btn'>{type}</button>
+                    return <button key={i} className='sorting-btn'>{type}</button>
                 })}
             </div>
             <div className="sorting-block">

@@ -31,100 +31,64 @@
         opacity: .5;
         cursor: pointer;
     }
-}
 
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 2px solid $lightgrey;
-    padding: 30px 0 30px;
+    &-footer {
+        margin-top: 40px;
+    }
 
-    &__about {
+    &-footer__total {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 15px;
-        line-height: 26px;
-    }
-
-    &__img {
-        width: 80px;
-        height: 80px;
-    }
-
-    &__title {
         font-size: 22px;
-        font-weight: 700;
+        letter-spacing: 0.22px;
+
+        &-count {
+            span {
+                font-weight: 700;
+            }
+        }
+
+        &-price {
+            span {
+                font-weight: 700;
+                color: $wood;
+            }
+        }
     }
 
-    &__type {
-        font-size: 18px;
-        font-weight: 500;
-        opacity: .5;
-    }
-
-    &__set {
+    &-footer__btns {
         display: flex;
-        gap: 94px;
-    }
-
-    &__quantity {
-        display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 12px;
+        margin-top: 40px;
 
         button {
-            width: 32px;
-            height: 32px;
-            background-color: $wood;
             border: none;
-            color: $white;
-            font-size: 20px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: none;
+            padding: 18px 18px;
             cursor: pointer;
-            transition: all .2s;
 
-            &:hover {
-                scale: 1.1;
+            &:first-child {
+                border-radius: 30px;
+                border: 2px solid $lightgrey;
+                opacity: .5;
+
+                &:hover {
+                    background: $lightgrey;
+                }
             }
 
-            &:active {
-                scale: 1;
+            &:last-child {
+                border-radius: 30px;
+                background: $wood;
+                color: $white;
+
+                &:hover {
+                    opacity: .8;
+                }
             }
         }
-
-        &-num {
-            font-size: 22px;
-            font-weight: 700;
-        }
     }
 
-    &__price {
-        font-size: 22px;
-        font-weight: 700;
-    }
-
-    &__delete {
-        border: 2px solid $grey;
-        border-radius: 50%;
-        background: none;
-        font-size: 24px;
-        opacity: .5;
-        height: 32px;
-        width: 32px;
-        cursor: pointer;
-        transition: all .2s;
-
-        &:hover {
-            background-color: $grey;
-            color: $white;
-        }
-
-        &:active {
-            scale: 0.9;
-        }
-    }
 }

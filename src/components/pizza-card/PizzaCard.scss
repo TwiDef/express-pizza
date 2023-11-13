@@ -98,6 +98,10 @@
                     color: $wood;
                 }
             }
+
+            &:active {
+                scale: .98
+            }
         }
     }
 }
