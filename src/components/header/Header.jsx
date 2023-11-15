@@ -13,15 +13,15 @@ const Header = (props) => {
                     <span className='header-logo__thin'>самая быстая доставка</span>
                 </div>
             </div>
-            <a href='#' className="header-cart">
+            <button className="header-cart">
                 <span className='header-cart__price'>100p</span>
                 <span className='header-cart__divided'></span>
-                <a href='#' className='header-cart__items'>
+                <span className='header-cart__items'>
                     <img src={cartLogo} alt="cartLogo" className='header-cart__items-cartlogo' />
                     23
-                </a>
-            </a>
-        </div>
+                </span>
+            </button>
+        </div >
     );
 }
 

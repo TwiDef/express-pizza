@@ -1,12 +1,12 @@
 import React from 'react';
 import './PizzaList.scss';
-import SortItems from '../sort-items/SortItems';
+import Categories from '../categories/Categories';
 import PizzaCard from '../pizza-card/PizzaCard';
 
 const PizzaList = (props) => {
     return (
         <div className='pizzaList'>
-            <SortItems />
+            <Categories />
             <h2>Все пиццы</h2>
             <div className="pizzaCards">
                 <PizzaCard />

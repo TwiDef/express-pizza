@@ -55,9 +55,11 @@
     font-weight: 700;
     position: relative;
     transition: all .2s;
+    cursor: pointer;
+    border: none;
 
     &:hover {
-        scale: 1.1;
+        scale: 1.06;
     }
 
     &:active {
