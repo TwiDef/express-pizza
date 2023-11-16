@@ -21,7 +21,8 @@
     }
 
     &-img {
-        padding-left: 12px;
+        width: 260px;
+        height: 260px;
     }
 
     &-title {
@@ -45,7 +46,9 @@
 
     &-set__type {
         display: flex;
+        justify-content: center;
         gap: 6px;
+        cursor: pointer;
 
         span {
             border-radius: 5px;
@@ -61,6 +64,7 @@
         display: flex;
         justify-content: space-evenly;
         gap: 6px;
+        cursor: pointer;
 
         span {
             border-radius: 5px;

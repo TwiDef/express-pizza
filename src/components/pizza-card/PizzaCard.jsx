@@ -1,27 +1,54 @@
 import React, { useState } from 'react';
 import './PizzaCard.scss';
-import pizzaItem from './../../assets/img/pizza-item.png'
 
-const PizzaCard = (props) => {
+const PizzaCard = ({ id,
+    imageUrl,
+    title,
+    types,
+    sizes,
+    price,
+    category,
+    rating }) => {
+
     const [pizzaCount, setPizzaCount] = useState(0)
+    const [selectedSize, setSelectedSize] = useState(0)
+    const [selectedDoughType, setSelectedDoughType] = useState(0)
+
+    const doughTypes = ['тонкое', 'традиционное']
+
+    const onChandeSelectedSize = (i) => {
+        setSelectedSize(i)
+    }
+    const onChangeSelectedType = (i) => {
+        setSelectedDoughType(i)
+    }
 
     return (
         <div className='card'>
-            <img className='card-img' src={pizzaItem} alt="card-img" />
-            <h4 className="card-title">Чизбургер-пицца</h4>
+            <img className='card-img' src={imageUrl} alt="card-img" />
+            <h4 className="card-title">{title}</h4>
             <div className="card-set">
                 <div className="card-set__type">
-                    <span className='card-set__type card-set__type--active'>тонкое</span>
-                    <span>традиционное</span>
+                    {types.map((type, i) => {
+                        return <span
+                            onClick={() => onChangeSelectedType(i)}
+                            className={`card-set__type ${selectedDoughType === i ? "card-set__type--active" : ""}`}
+                            key={i}>{doughTypes[type]}</span>
+                    })}
                 </div>
                 <div className="card-set__size">
-                    <span className="card-set__size card-set__size--active card-set__size-small">26cm</span>
-                    <span className="card-set__size card-set__size-medium">30cm</span>
-                    <span className="card-set__size-large card-set__size-large">40cm</span>
+                    {sizes.map((size, i) => {
+                        return <span
+                            onClick={() => onChandeSelectedSize(i)}
+                            key={i}
+                            className={`card-set__size ${selectedSize === i ? "card-set__size--active" : ""}`}
+                        >{size}cm</span>
+                    })}
+
                 </div>
             </div>
             <div className="card-footer">
-                <div className="card-footer__price">от <span>395p</span></div>
+                <div className="card-footer__price">от <span>{price}p</span></div>
                 <div className="card-footer__btn">
                     <button onClick={() => setPizzaCount(pizzaCount + 1)}>+ Добавить <span>{pizzaCount}</span></button>
                 </div>

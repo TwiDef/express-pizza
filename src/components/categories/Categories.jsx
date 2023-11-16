@@ -37,14 +37,14 @@ const Categories = (props) => {
                         openPopup ?
                             <ul className="categories-popup">
                                 {sortList.map((item, i) => {
-                                    return <div>
+                                    return <ul>
                                         <li
                                             onClick={() => onChangeSortType(i)}
                                             key={i}
                                             className={`categories-popup__type ${selected === i ? 'categories-popup__type--active' : ''}`}>
                                             {item}
                                         </li>
-                                    </div>
+                                    </ul>
                                 })}
                             </ul> :
                             null
