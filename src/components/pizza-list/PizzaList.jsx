@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './PizzaList.scss';
+
 import Categories from '../categories/Categories';
 import PizzaCard from '../pizza-card/PizzaCard';
 import Skeleton from '../skeleton/Skeleton';
+import './PizzaList.scss';
 
 const PizzaList = (props) => {
     const [items, setItems] = useState([])
