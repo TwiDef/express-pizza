@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import './Categories.scss';
 import arrowUp from '../../assets/img/arrow-up.svg'
 
-const Categories = (props) => {
+const Categories = ({ categoryIndex, onClickCategory }) => {
 
-    const [activeItem, setActiveItem] = useState(0)
     const [openPopup, setOpenPopup] = useState(false)
     const [selected, setSelected] = useState(0)
 
@@ -21,9 +20,9 @@ const Categories = (props) => {
             <ul className="categories-btn-block">
                 {categories.map((type, i) => {
                     return <li
-                        onClick={() => setActiveItem(i)}
+                        onClick={() => onClickCategory(i)}
                         key={i}
-                        className={`categories-btn ${activeItem === i ? 'categories-btn--active' : ''}`}>{type}</li>
+                        className={`categories-btn ${categoryIndex === i ? 'categories-btn--active' : ''}`}>{type}</li>
                 })}
             </ul>
             <div className="categories-block">

@@ -68,6 +68,7 @@
             background: none;
             padding: 18px 18px;
             cursor: pointer;
+            transition: .1s all;
 
             &:active {
                 scale: .98;
@@ -75,14 +76,10 @@
 
             &:first-child {
                 border-radius: 30px;
-                border: 2px solid $lightgrey;
-                opacity: .5;
 
                 &:hover {
-                    background: $lightgrey;
+                    background-color: $darkwood;
                 }
-
-
             }
 
             &:last-child {
@@ -91,7 +88,7 @@
                 color: $white;
 
                 &:hover {
-                    opacity: .8;
+                    background-color: $darkwood;
                 }
             }
         }

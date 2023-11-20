@@ -55,16 +55,16 @@
     font-style: normal;
     font-weight: 700;
     position: relative;
-    transition: all .2s;
+    transition: all .1s;
     cursor: pointer;
     border: none;
 
     &:hover {
-        scale: 1.06;
+        background: $darkwood;
     }
 
     &:active {
-        scale: 1;
+        scale: .97;
     }
 
     &__items {

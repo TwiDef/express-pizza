@@ -1,8 +1,9 @@
 import React from 'react';
-import cartIcon from './../../assets/img/cart.svg';
+import { Link } from 'react-router-dom';
 
-import './Cart.scss';
+import cartIcon from './../../assets/img/cart.svg';
 import CartItem from '../cart-item/CartItem';
+import './Cart.scss';
 
 const Cart = (props) => {
     return (
@@ -23,8 +24,12 @@ const Cart = (props) => {
                     <p className="cart-footer__total-price">Сумма заказа: <span>900p</span></p>
                 </div>
                 <div className="cart-footer__btns">
-                    <button className="cart-footer__backward-btn">&#x3c; Вернутся назад</button>
-                    <button className="cart-footer__paid-btn">Оплатить сейчас</button>
+                    <Link to="/">
+                        <button className="cart-footer__backward-btn">&#x3c; Вернутся назад</button>
+                    </Link>
+                    <Link to="/payment">
+                        <button className="cart-footer__paid-btn">Оплатить сейчас</button>
+                    </Link>
                 </div>
             </div>
         </div>

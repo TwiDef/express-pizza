@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './CartPage.scss';
 import Cart from '../../cart/Cart';
 

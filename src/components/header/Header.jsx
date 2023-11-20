@@ -6,12 +6,13 @@ import cartLogo from '../../assets/img/cartlogo.svg';
 import './Header.scss';
 
 const Header = (props) => {
+
     return (
         <div className='header'>
             <div className="header-logo">
                 <Link to="/"><img src={pizzaLogo} alt="logo" className="header-logo__img" /></Link>
                 <div className="header-logo__text">
-                    <span className='header-logo__bold'>express pizza</span>
+                    <h1 className='header-logo__bold'>express pizza</h1>
                     <span className='header-logo__thin'>самая быстая доставка</span>
                 </div>
             </div>

@@ -1,6 +1,12 @@
 .page404 {
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+
+    img {
+        margin: 5% 0;
+    }
+
 }
