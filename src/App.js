@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/Header';
@@ -8,9 +8,11 @@ import Page404 from './components/pages/Page404/Page404';
 import './App.scss';
 
 function App() {
+    const [searchValue, setSearchValue] = useState('')
+
     return (
         <div className="App">
-            <Header />
+            <Header searchValue={searchValue} setSearchValue={setSearchValue} />
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/cart" element={<CartPage />} />
