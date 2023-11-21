@@ -9,21 +9,29 @@ const PizzaList = (props) => {
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
     const [categoryIndex, setCategoryIndex] = useState(0)
+    const [sortType, setSortType] = useState({
+        name: 'популярности',
+        sortType: 'rating'
+    })
 
     useEffect(() => {
         setLoading(true)
-        fetch(`https://6554f4a363cafc694fe74239.mockapi.io/items?category=${categoryIndex ? categoryIndex : ''}`)
+        fetch(`https://6554f4a363cafc694fe74239.mockapi.io/items?${categoryIndex > 0 ? `category=${categoryIndex}` : ''}&sortBy=${sortType.sortProperty}&order=desc`)
             .then(res => res.json())
             .then(data => {
                 setItems(data)
                 setLoading(false)
             })
         window.scrollTo(0, 0)
-    }, [categoryIndex])
+    }, [categoryIndex, sortType])
 
     return (
         <div className='pizzaList'>
-            <Categories categoryIndex={categoryIndex} onClickCategory={(i) => setCategoryIndex(i)} />
+            <Categories
+                categoryIndex={categoryIndex}
+                onChangeCategory={(i) => setCategoryIndex(i)}
+                sortType={sortType}
+                onChangeSort={(property) => setSortType(property)} />
             <h2>Все пиццы</h2>
             <ul className="pizzaCards">
                 {loading ? [...new Array(8)].map((_, i) => <Skeleton key={i} />) :

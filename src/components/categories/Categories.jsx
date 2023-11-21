@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import './Categories.scss';
 import arrowUp from '../../assets/img/arrow-up.svg'
 
-const Categories = ({ categoryIndex, onClickCategory }) => {
+const Categories = ({ categoryIndex, onChangeCategory, sortType, onChangeSort }) => {
 
     const [openPopup, setOpenPopup] = useState(false)
-    const [selected, setSelected] = useState(0)
 
-    const sortList = ['популярности', 'цене', 'алфавиту']
+    const sortList = [
+        { name: 'популярности', sortProperty: 'rating' },
+        { name: 'цене', sortProperty: 'price' },
+        { name: 'алфавиту', sortProperty: 'title' }
+    ]
     const categories = ['Все', 'Мясные', 'Вегетерианские', 'Гриль', 'Острые', 'Закрытые']
 
-    const onChangeSortType = (i) => {
-        setSelected(i)
+    const onChangeSortType = (property) => {
+        onChangeSort(property)
         setOpenPopup(false)
     }
 
@@ -20,7 +23,7 @@ const Categories = ({ categoryIndex, onClickCategory }) => {
             <ul className="categories-btn-block">
                 {categories.map((type, i) => {
                     return <li
-                        onClick={() => onClickCategory(i)}
+                        onClick={() => onChangeCategory(i)}
                         key={i}
                         className={`categories-btn ${categoryIndex === i ? 'categories-btn--active' : ''}`}>{type}</li>
                 })}
@@ -31,19 +34,17 @@ const Categories = ({ categoryIndex, onClickCategory }) => {
                 </button>
                 <div>
                     Сортировка по:
-                    <span onClick={() => setOpenPopup(!openPopup)}> {sortList[selected]}</span>
+                    <span onClick={() => setOpenPopup(!openPopup)}> {sortType.name}</span>
                     {
                         openPopup ?
                             <ul className="categories-popup">
-                                {sortList.map((item, i) => {
-                                    return <ul>
-                                        <li
-                                            onClick={() => onChangeSortType(i)}
-                                            key={i}
-                                            className={`categories-popup__type ${selected === i ? 'categories-popup__type--active' : ''}`}>
-                                            {item}
-                                        </li>
-                                    </ul>
+                                {sortList.map((obj, i) => {
+                                    return <li
+                                        onClick={() => onChangeSortType(obj)}
+                                        key={i}
+                                        className={`categories-popup__type ${sortType.sortProperty === obj.sortProperty ? 'categories-popup__type--active' : ''}`}>
+                                        {obj.name}
+                                    </li>
                                 })}
                             </ul> :
                             null
