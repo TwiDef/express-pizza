@@ -3,10 +3,10 @@ import React from 'react';
 import PizzaList from '../../pizza-list/PizzaList';
 import './MainPage.scss';
 
-const MainPage = (props) => {
+const MainPage = ({ searchValue }) => {
     return (
         <div className='mainPage'>
-            <PizzaList />
+            <PizzaList searchValue={searchValue} />
         </div>
     );
 }

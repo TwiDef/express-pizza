@@ -5,7 +5,7 @@ import PizzaCard from '../pizza-card/PizzaCard';
 import Skeleton from '../skeleton/Skeleton';
 import './PizzaList.scss';
 
-const PizzaList = (props) => {
+const PizzaList = ({ searchValue }) => {
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
     const [categoryIndex, setCategoryIndex] = useState(0)
@@ -14,16 +14,26 @@ const PizzaList = (props) => {
         sortType: 'rating'
     })
 
+    const category = categoryIndex > 0 ? `category=${categoryIndex}` : ''
+    const sortBy = sortType.sortProperty
+
     useEffect(() => {
         setLoading(true)
-        fetch(`https://6554f4a363cafc694fe74239.mockapi.io/items?${categoryIndex > 0 ? `category=${categoryIndex}` : ''}&sortBy=${sortType.sortProperty}&order=desc`)
+        fetch(`https://6554f4a363cafc694fe74239.mockapi.io/items?${category}&sortBy=${sortBy}&order=desc`)
             .then(res => res.json())
             .then(data => {
                 setItems(data)
                 setLoading(false)
             })
         window.scrollTo(0, 0)
-    }, [categoryIndex, sortType])
+    }, [category, sortBy])
+
+    const pizzas = items.filter(obj => {
+        return obj.title.toLowerCase().includes(searchValue.toLowerCase()) ? true : false
+    }).map(item => {
+        return <li key={item.id}><PizzaCard  {...item} /></li>
+    })
+    const skeletons = [...new Array(8)].map((_, i) => <Skeleton key={i} />)
 
     return (
         <div className='pizzaList'>
@@ -34,10 +44,8 @@ const PizzaList = (props) => {
                 onChangeSort={(property) => setSortType(property)} />
             <h2>Все пиццы</h2>
             <ul className="pizzaCards">
-                {loading ? [...new Array(8)].map((_, i) => <Skeleton key={i} />) :
-                    items.map(item => {
-                        return <li key={item.id}><PizzaCard  {...item} /></li>
-                    })}
+                {loading ? skeletons : pizzas
+                }
             </ul>
         </div>
     );
