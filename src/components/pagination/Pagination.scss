@@ -1,0 +1,40 @@
+@import './../colors.scss';
+
+.pagination {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+
+    li {
+        border: 2px solid $wood;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-right: 6px;
+        transition: .1s all;
+
+        &.selected:not(.init) {
+            background-color: $wood;
+
+            a {
+                color: $white;
+            }
+        }
+
+        &:active {
+            scale: 0.90;
+        }
+
+        a {
+            color: $wood;
+            font-size: 14px;
+            font-weight: 700;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
