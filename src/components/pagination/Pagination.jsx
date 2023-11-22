@@ -2,16 +2,16 @@ import React from 'react';
 import ReactPaginate from 'react-paginate';
 import './Pagination.scss';
 
-const Pagination = () => {
+const Pagination = ({ setCurrentPage }) => {
     return (
         <ReactPaginate
             className='pagination'
             breakLabel="..."
             nextLabel=">"
             previousLabel="<"
-            onPageChange={e => console.log(e)}
+            onPageChange={e => setCurrentPage(e.selected + 1)}
             pageRangeDisplayed={8}
-            pageCount={3}
+            pageCount={2}
             renderOnZeroPageCount={null}
         />
     );

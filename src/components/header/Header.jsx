@@ -6,7 +6,7 @@ import cartLogo from '../../assets/img/cartlogo.svg';
 import Search from '../search/Search';
 import './Header.scss';
 
-const Header = ({ searchValue, setSearchValue }) => {
+const Header = () => {
 
     return (
         <div className='header'>
@@ -17,7 +17,7 @@ const Header = ({ searchValue, setSearchValue }) => {
                     <span className='header-logo__thin'>самая быстая доставка</span>
                 </div>
             </div>
-            <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+            <Search />
             <Link to="/cart" className="header-cart">
                 <span className='header-cart__price'>100p</span>
                 <span className='header-cart__divided'></span>

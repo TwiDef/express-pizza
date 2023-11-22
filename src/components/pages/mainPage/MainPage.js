@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pagination from '../../pagination/Pagination';
 
 import PizzaList from '../../pizza-list/PizzaList';
 import './MainPage.scss';
 
 
-const MainPage = ({ searchValue }) => {
+const MainPage = () => {
+    const [currentPage, setCurrentPage] = useState(1)
     return (
         <div className='mainPage'>
-            <PizzaList searchValue={searchValue} />
-            <Pagination />
+            <PizzaList currentPage={currentPage} />
+            <Pagination setCurrentPage={setCurrentPage} />
         </div>
     );
 }

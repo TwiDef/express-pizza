@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { SearchContext } from '../../App';
 
 import Categories from '../categories/Categories';
 import PizzaCard from '../pizza-card/PizzaCard';
 import Skeleton from '../skeleton/Skeleton';
 import './PizzaList.scss';
 
-const PizzaList = ({ searchValue }) => {
+const PizzaList = ({ currentPage }) => {
+    const { searchValue } = useContext(SearchContext)
+
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
     const [categoryIndex, setCategoryIndex] = useState(0)
@@ -19,14 +22,13 @@ const PizzaList = ({ searchValue }) => {
 
     useEffect(() => {
         setLoading(true)
-        fetch(`https://6554f4a363cafc694fe74239.mockapi.io/items?${category}&sortBy=${sortBy}&order=desc`)
+        fetch(`https://6554f4a363cafc694fe74239.mockapi.io/items?${category}&limit=8&page=${currentPage}&sortBy=${sortBy}&order=desc`)
             .then(res => res.json())
             .then(data => {
                 setItems(data)
                 setLoading(false)
             })
-        window.scrollTo(0, 0)
-    }, [category, sortBy])
+    }, [category, sortBy, currentPage])
 
     const pizzas = items.filter(obj => {
         return obj.title.toLowerCase().includes(searchValue.toLowerCase()) ? true : false
