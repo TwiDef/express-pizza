@@ -8,17 +8,12 @@ import Skeleton from '../skeleton/Skeleton';
 import './PizzaList.scss';
 
 const PizzaList = ({ currentPage }) => {
-    const categoryId = useSelector(state => state.sort.categoryId)
-
+    const categoryId = useSelector(state => state.filter.categoryId)
+    const sortType = useSelector(state => state.filter.sortType)
     const { searchValue } = useContext(SearchContext)
 
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
-    /* const [categoryIndex, setCategoryIndex] = useState(0) */
-    const [sortType, setSortType] = useState({
-        name: 'популярности',
-        sortType: 'rating'
-    })
 
     const category = categoryId > 0 ? `category=${categoryId}` : ''
     const sortBy = sortType.sortProperty
@@ -42,11 +37,7 @@ const PizzaList = ({ currentPage }) => {
 
     return (
         <div className='pizzaList'>
-            <Categories
-                /* categoryIndex={categoryIndex}
-                onChangeCategory={(i) => setCategoryIndex(i)} */
-                sortType={sortType}
-                onChangeSort={(property) => setSortType(property)} />
+            <Categories />
             <h2>Все пиццы</h2>
             <ul className="pizzaCards">
                 {loading ? skeletons : pizzas

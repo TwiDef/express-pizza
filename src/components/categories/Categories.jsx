@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryId } from '../../redux/slices/sortSlice';
+import { setCategoryId, setSortType } from '../../redux/slices/sortSlice';
 import './Categories.scss';
 import arrowUp from '../../assets/img/arrow-up.svg'
 
-const Categories = ({/*  categoryIndex, onChangeCategory, */ sortType, onChangeSort }) => {
-    const categoryId = useSelector(state => state.sort.categoryId)
+const Categories = () => {
+    const categoryId = useSelector(state => state.filter.categoryId)
+    const sortType = useSelector(state => state.filter.sortType)
     const dispatch = useDispatch()
 
     const [openPopup, setOpenPopup] = useState(false)
@@ -18,7 +19,7 @@ const Categories = ({/*  categoryIndex, onChangeCategory, */ sortType, onChangeS
     const categories = ['Все', 'Мясные', 'Вегетерианские', 'Гриль', 'Острые', 'Закрытые']
 
     const onChangeSortType = (property) => {
-        onChangeSort(property)
+        dispatch(setSortType(property))
         setOpenPopup(false)
     }
 
@@ -27,10 +28,9 @@ const Categories = ({/*  categoryIndex, onChangeCategory, */ sortType, onChangeS
             <ul className="categories-btn-block">
                 {categories.map((type, i) => {
                     return <li
-                        /* onClick={() => onChangeCategory(i)} */
                         onClick={() => dispatch(setCategoryId(i))}
                         key={i}
-                        className={`categories-btn ${/* categoryIndex */ categoryId === i ? 'categories-btn--active' : ''}`}>{type}</li>
+                        className={`categories-btn ${categoryId === i ? 'categories-btn--active' : ''}`}>{type}</li>
                 })}
             </ul>
             <div className="categories-block">
