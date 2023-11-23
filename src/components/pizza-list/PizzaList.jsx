@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { SearchContext } from '../../App';
 
 import Categories from '../categories/Categories';
@@ -7,17 +8,19 @@ import Skeleton from '../skeleton/Skeleton';
 import './PizzaList.scss';
 
 const PizzaList = ({ currentPage }) => {
+    const categoryId = useSelector(state => state.sort.categoryId)
+
     const { searchValue } = useContext(SearchContext)
 
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
-    const [categoryIndex, setCategoryIndex] = useState(0)
+    /* const [categoryIndex, setCategoryIndex] = useState(0) */
     const [sortType, setSortType] = useState({
         name: 'популярности',
         sortType: 'rating'
     })
 
-    const category = categoryIndex > 0 ? `category=${categoryIndex}` : ''
+    const category = categoryId > 0 ? `category=${categoryId}` : ''
     const sortBy = sortType.sortProperty
 
     useEffect(() => {
@@ -40,8 +43,8 @@ const PizzaList = ({ currentPage }) => {
     return (
         <div className='pizzaList'>
             <Categories
-                categoryIndex={categoryIndex}
-                onChangeCategory={(i) => setCategoryIndex(i)}
+                /* categoryIndex={categoryIndex}
+                onChangeCategory={(i) => setCategoryIndex(i)} */
                 sortType={sortType}
                 onChangeSort={(property) => setSortType(property)} />
             <h2>Все пиццы</h2>

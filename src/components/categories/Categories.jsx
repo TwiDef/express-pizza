@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCategoryId } from '../../redux/slices/sortSlice';
 import './Categories.scss';
 import arrowUp from '../../assets/img/arrow-up.svg'
 
-const Categories = ({ categoryIndex, onChangeCategory, sortType, onChangeSort }) => {
+const Categories = ({/*  categoryIndex, onChangeCategory, */ sortType, onChangeSort }) => {
+    const categoryId = useSelector(state => state.sort.categoryId)
+    const dispatch = useDispatch()
 
     const [openPopup, setOpenPopup] = useState(false)
 
@@ -23,9 +27,10 @@ const Categories = ({ categoryIndex, onChangeCategory, sortType, onChangeSort })
             <ul className="categories-btn-block">
                 {categories.map((type, i) => {
                     return <li
-                        onClick={() => onChangeCategory(i)}
+                        /* onClick={() => onChangeCategory(i)} */
+                        onClick={() => dispatch(setCategoryId(i))}
                         key={i}
-                        className={`categories-btn ${categoryIndex === i ? 'categories-btn--active' : ''}`}>{type}</li>
+                        className={`categories-btn ${/* categoryIndex */ categoryId === i ? 'categories-btn--active' : ''}`}>{type}</li>
                 })}
             </ul>
             <div className="categories-block">
