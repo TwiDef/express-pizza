@@ -19,19 +19,20 @@ const PizzaList = ({ currentPage }) => {
 
     const category = categoryId > 0 ? `category=${categoryId}` : ''
     const sortBy = sortType.sortProperty
+    const searchBy = searchValue ? `search=${searchValue}` : ''
+
+    console.log(searchValue);
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`https://6554f4a363cafc694fe74239.mockapi.io/items?${category}&limit=8&page=${currentPage}&sortBy=${sortBy}&order=desc`)
+        axios.get(`https://6554f4a363cafc694fe74239.mockapi.io/items?${category}${searchBy}&limit=8&page=${currentPage}&sortBy=${sortBy}&order=desc`)
             .then(res => {
                 setItems(res.data)
                 setLoading(false)
             })
-    }, [category, sortBy, currentPage])
+    }, [category, sortBy, searchBy, currentPage])
 
-    const pizzas = items.filter(obj => {
-        return obj.title.toLowerCase().includes(searchValue.toLowerCase()) ? true : false
-    }).map(item => {
+    const pizzas = items.map(item => {
         return <li key={item.id}><PizzaCard  {...item} /></li>
     })
     const skeletons = [...new Array(8)].map((_, i) => <Skeleton key={i} />)
