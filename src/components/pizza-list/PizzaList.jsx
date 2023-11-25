@@ -21,8 +21,6 @@ const PizzaList = ({ currentPage }) => {
     const sortBy = sortType.sortProperty
     const searchBy = searchValue ? `search=${searchValue}` : ''
 
-    console.log(searchValue);
-
     useEffect(() => {
         setLoading(true)
         axios.get(`https://6554f4a363cafc694fe74239.mockapi.io/items?${category}${searchBy}&limit=8&page=${currentPage}&sortBy=${sortBy}&order=desc`)
