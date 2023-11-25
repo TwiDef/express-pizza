@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { SearchContext } from '../../App';
 
@@ -10,6 +11,7 @@ import './PizzaList.scss';
 const PizzaList = ({ currentPage }) => {
     const categoryId = useSelector(state => state.filter.categoryId)
     const sortType = useSelector(state => state.filter.sortType)
+
     const { searchValue } = useContext(SearchContext)
 
     const [items, setItems] = useState([])
@@ -20,10 +22,9 @@ const PizzaList = ({ currentPage }) => {
 
     useEffect(() => {
         setLoading(true)
-        fetch(`https://6554f4a363cafc694fe74239.mockapi.io/items?${category}&limit=8&page=${currentPage}&sortBy=${sortBy}&order=desc`)
-            .then(res => res.json())
-            .then(data => {
-                setItems(data)
+        axios.get(`https://6554f4a363cafc694fe74239.mockapi.io/items?${category}&limit=8&page=${currentPage}&sortBy=${sortBy}&order=desc`)
+            .then(res => {
+                setItems(res.data)
                 setLoading(false)
             })
     }, [category, sortBy, currentPage])

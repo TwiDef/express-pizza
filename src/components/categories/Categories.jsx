@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryId, setSortType } from '../../redux/slices/sortSlice';
 import './Categories.scss';
-import arrowUp from '../../assets/img/arrow-up.svg'
+import arrowUp from '../../assets/img/arrow-up.svg';
+
+const sortList = [
+    { name: 'популярности', sortProperty: 'rating' },
+    { name: 'цене', sortProperty: 'price' },
+    { name: 'алфавиту', sortProperty: 'title' }
+]
 
 const Categories = () => {
     const categoryId = useSelector(state => state.filter.categoryId)
@@ -11,11 +17,6 @@ const Categories = () => {
 
     const [openPopup, setOpenPopup] = useState(false)
 
-    const sortList = [
-        { name: 'популярности', sortProperty: 'rating' },
-        { name: 'цене', sortProperty: 'price' },
-        { name: 'алфавиту', sortProperty: 'title' }
-    ]
     const categories = ['Все', 'Мясные', 'Вегетерианские', 'Гриль', 'Острые', 'Закрытые']
 
     const onChangeSortType = (property) => {
