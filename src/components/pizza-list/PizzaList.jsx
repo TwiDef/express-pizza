@@ -8,9 +8,10 @@ import PizzaCard from '../pizza-card/PizzaCard';
 import Skeleton from '../skeleton/Skeleton';
 import './PizzaList.scss';
 
-const PizzaList = ({ currentPage }) => {
+const PizzaList = () => {
     const categoryId = useSelector(state => state.filter.categoryId)
     const sortType = useSelector(state => state.filter.sortType)
+    const currentPage = useSelector(state => state.filter.currentPage)
 
     const { searchValue } = useContext(SearchContext)
 
