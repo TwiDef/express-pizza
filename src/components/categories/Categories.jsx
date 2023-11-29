@@ -4,7 +4,7 @@ import { setCategoryId, setSortType } from '../../redux/slices/sortSlice';
 import './Categories.scss';
 import arrowUp from '../../assets/img/arrow-up.svg';
 
-const sortList = [
+export const sortList = [
     { name: 'популярности', sortProperty: 'rating' },
     { name: 'цене', sortProperty: 'price' },
     { name: 'алфавиту', sortProperty: 'title' }
