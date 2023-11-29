@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryId, setSortType } from '../../redux/slices/sortSlice';
 import './Categories.scss';
 import arrowUp from '../../assets/img/arrow-up.svg';
+import { useRef } from 'react';
 
 export const sortList = [
     { name: 'популярности', sortProperty: 'rating' },
@@ -16,6 +17,7 @@ const Categories = () => {
     const dispatch = useDispatch()
 
     const [openPopup, setOpenPopup] = useState(false)
+    const categoriesBlockRef = useRef()
 
     const categories = ['Все', 'Мясные', 'Вегетерианские', 'Гриль', 'Острые', 'Закрытые']
 
@@ -23,6 +25,19 @@ const Categories = () => {
         dispatch(setSortType(property))
         setOpenPopup(false)
     }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.composedPath().includes(categoriesBlockRef.current)) {
+                setOpenPopup(false)
+            }
+        }
+
+        document.body.addEventListener('click', handleClickOutside)
+        return () => {
+            document.body.removeEventListener('click', handleClickOutside)
+        }
+    }, [])
 
     return (
         <div className='categories'>
@@ -34,7 +49,7 @@ const Categories = () => {
                         className={`categories-btn ${categoryId === i ? 'categories-btn--active' : ''}`}>{type}</li>
                 })}
             </ul>
-            <div className="categories-block">
+            <div className="categories-block" ref={categoriesBlockRef}>
                 <button className='categories-block__arrow'>
                     <img src={arrowUp} alt="up" />
                 </button>
