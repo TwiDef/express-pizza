@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../redux/slices/cartSlice';
 
 import './PizzaCard.scss';
 
@@ -11,7 +13,7 @@ const PizzaCard = ({ id,
     category,
     rating }) => {
 
-    const [pizzaCount, setPizzaCount] = useState(0)
+    const dispatch = useDispatch()
     const [selectedSize, setSelectedSize] = useState(0)
     const [selectedDoughType, setSelectedDoughType] = useState(0)
 
@@ -51,7 +53,7 @@ const PizzaCard = ({ id,
             <div className="card-footer">
                 <div className="card-footer__price">от <span>{price}p</span></div>
                 <div className="card-footer__btn">
-                    <button onClick={() => setPizzaCount(pizzaCount + 1)}>+ Добавить <span>{pizzaCount}</span></button>
+                    <button onClick={() => dispatch(addItem(id))}>+ Добавить <span>{0}</span></button>
                 </div>
             </div>
         </div>

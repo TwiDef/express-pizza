@@ -68,7 +68,7 @@ const PizzaList = () => {
         }
     }, [])
 
-    // query all pizzas
+    // query all pizzas, if has been first render
     useEffect(() => {
         if (!isSearch.current) {
             fetchPizzas()
