@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import pizzaLogo from '../../assets/img/pizza.png';
 import cartLogo from '../../assets/img/cartlogo.svg';
@@ -7,6 +8,8 @@ import Search from '../search/Search';
 import './Header.scss';
 
 const Header = () => {
+    const totalPrice = useSelector(state => state.cart.totalPrice)
+    const items = useSelector(state => state.cart.items)
 
     return (
         <div className='header'>
@@ -19,12 +22,13 @@ const Header = () => {
             </div>
             <Search />
             <Link to="/cart" className="header-cart">
-                <span className='header-cart__price'>100p</span>
-                <span className='header-cart__divided'></span>
-                <span className='header-cart__items'>
-                    <img src={cartLogo} alt="cartLogo" className='header-cart__items-cartlogo' />
-                    23
-                </span>
+                <div className="header-cart__wrapper">
+                    <span className='header-cart__price'>{totalPrice} ₽</span>
+                    <span className='header-cart__items'>
+                        <img src={cartLogo} alt="cartLogo" className='header-cart__items-cartlogo' />
+                        {items.length}
+                    </span>
+                </div>
             </Link>
         </div >
     );

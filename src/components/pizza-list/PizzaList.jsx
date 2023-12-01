@@ -4,6 +4,7 @@ import axios from 'axios';
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilters } from '../../redux/slices/sortSlice';
+
 import { SearchContext } from '../../App';
 import { sortList } from '../categories/Categories';
 
