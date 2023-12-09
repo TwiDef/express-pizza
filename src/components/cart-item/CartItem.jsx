@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { plusItem, minusItem } from '../../redux/slices/cartSlice';
+import { useDispatch } from 'react-redux';
+import { plusItem, minusItem, removeItem } from '../../redux/slices/cartSlice';
 import './CartItem.scss';
 
 const CartItem = ({ count, id, imageUrl, price, size, title, type }) => {
@@ -11,6 +11,9 @@ const CartItem = ({ count, id, imageUrl, price, size, title, type }) => {
     }
     const onClickMinus = () => {
         dispatch(minusItem(id))
+    }
+    const onClickRemove = () => {
+        dispatch(removeItem(id))
     }
 
     return (
@@ -29,7 +32,7 @@ const CartItem = ({ count, id, imageUrl, price, size, title, type }) => {
                     <button onClick={onClickPlus}>+</button>
                 </div>
                 <p className='cart-item__price'>{price * count}p</p>
-                <button className='cart-item__delete'>&times;</button>
+                <button onClick={onClickRemove} className='cart-item__delete'>&times;</button>
             </div>
         </div>
     );

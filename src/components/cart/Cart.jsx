@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { clearItems } from '../../redux/slices/cartSlice';
 
 import cartIcon from './../../assets/img/cart.svg';
 import CartItem from '../cart-item/CartItem';
@@ -10,6 +11,13 @@ const Cart = (props) => {
     const dispatch = useDispatch()
     const items = useSelector((state) => state.cart.items)
     const totalPrice = useSelector((state) => state.cart.totalPrice)
+    const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+
+    const onClickClear = () => {
+        if (window.confirm('Are you sure to remove all Pizzass from cart?')) {
+            dispatch(clearItems())
+        }
+    }
 
     return (
         <div className='cart'>
@@ -18,15 +26,19 @@ const Cart = (props) => {
                     <img src={cartIcon} alt="cart" />
                     <h5>Корзина</h5>
                 </div>
-                <button className='cart-header__remove'>Очистить корзину</button>
+                <button onClick={onClickClear} className='cart-header__remove'>Очистить корзину</button>
             </div>
 
             {items.map(item => <li key={item.id}><CartItem {...item} /></li>)}
 
             <div className="cart-footer">
                 <div className="cart-footer__total">
-                    <p className="cart-footer__total-count">Всего пицц: <span>{items.length} шт</span></p>
-                    <p className="cart-footer__total-price">Сумма заказа: <span>{totalPrice}p</span></p>
+                    <p className="cart-footer__total-count">Всего пицц:
+                        <span> {totalCount} шт</span>
+                    </p>
+                    <p className="cart-footer__total-price">Сумма заказа:
+                        <span> {totalPrice}p</span>
+                    </p>
                 </div>
                 <div className="cart-footer__btns">
                     <Link to="/">
