@@ -67,7 +67,9 @@ const PizzaCard = ({ id,
             <div className="card-footer">
                 <div className="card-footer__price">от <span>{price}p</span></div>
                 <div className="card-footer__btn">
-                    <button onClick={onClickAdd}>+ Добавить <span>{addedCount}</span></button>
+                    <button onClick={onClickAdd}>+ Добавить
+                        {addedCount > 0 && <span>{addedCount}</span>}
+                    </button>
                 </div>
             </div>
         </div>

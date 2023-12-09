@@ -11,6 +11,8 @@ const Header = () => {
     const totalPrice = useSelector(state => state.cart.totalPrice)
     const items = useSelector(state => state.cart.items)
 
+    const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+
     return (
         <div className='header'>
             <div className="header-logo">
@@ -20,13 +22,12 @@ const Header = () => {
                     <span className='header-logo__thin'>самая быстая доставка</span>
                 </div>
             </div>
-            <Search />
             <Link to="/cart" className="header-cart">
                 <div className="header-cart__wrapper">
                     <span className='header-cart__price'>{totalPrice} ₽</span>
                     <span className='header-cart__items'>
                         <img src={cartLogo} alt="cartLogo" className='header-cart__items-cartlogo' />
-                        {items.length}
+                        {totalCount}
                     </span>
                 </div>
             </Link>

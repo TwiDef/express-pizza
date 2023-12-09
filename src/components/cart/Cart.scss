@@ -6,6 +6,10 @@
     width: 100%;
     padding-top: 94px;
 
+    li {
+        list-style-type: none;
+    }
+
     &-header {
         display: flex;
         justify-content: space-between;

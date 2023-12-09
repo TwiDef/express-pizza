@@ -71,8 +71,11 @@
     }
 
     &__price {
+        min-width: 100px;
         font-size: 22px;
         font-weight: 700;
+        display: flex;
+        justify-content: center;
     }
 
     &__delete {
