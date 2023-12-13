@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilters } from '../../redux/slices/sortSlice';
+import { fetchPizzas } from '../../redux/slices/pizzaSlice';
 
 import { SearchContext } from '../../App';
 import { sortList } from '../categories/Categories';
@@ -14,9 +14,8 @@ import Skeleton from '../skeleton/Skeleton';
 import './PizzaList.scss';
 
 const PizzaList = () => {
-    const categoryId = useSelector(state => state.filter.categoryId)
-    const sortType = useSelector(state => state.filter.sortType)
-    const currentPage = useSelector(state => state.filter.currentPage)
+    const { categoryId, sortType, currentPage } = useSelector(state => state.filter)
+    const { items, status } = useSelector(state => state.pizza)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -25,20 +24,17 @@ const PizzaList = () => {
 
     const { searchValue } = useContext(SearchContext)
 
-    const [items, setItems] = useState([])
-    const [loading, setLoading] = useState(true)
-
     const category = categoryId > 0 ? `category=${categoryId}` : ''
     const sortBy = sortType.sortProperty
     const searchBy = searchValue ? `search=${searchValue}` : ''
 
-    const fetchPizzas = () => {
-        setLoading(true)
-        axios.get(`https://6554f4a363cafc694fe74239.mockapi.io/items?${category}${searchBy}&limit=8&page=${currentPage}&sortBy=${sortBy}&order=desc`)
-            .then(res => {
-                setItems(res.data)
-                setLoading(false)
-            })
+    const getPizzas = async () => {
+        dispatch(fetchPizzas({
+            category,
+            searchBy,
+            currentPage,
+            sortBy
+        }))
     }
 
     // add params to url
@@ -72,7 +68,7 @@ const PizzaList = () => {
     // query all pizzas, if has been first render
     useEffect(() => {
         if (!isSearch.current) {
-            fetchPizzas()
+            getPizzas()
         }
         isSearch.current = false
     }, [categoryId, sortBy, searchBy, currentPage])
@@ -88,7 +84,7 @@ const PizzaList = () => {
             <Categories />
             <h2>Все пиццы</h2>
             <ul className="pizzaCards">
-                {loading ? skeletons : pizzas
+                {status === 'loading' ? skeletons : pizzas
                 }
             </ul>
         </div>

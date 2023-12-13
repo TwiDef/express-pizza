@@ -28,6 +28,7 @@ const PizzaCard = ({ id,
         setSelectedDoughType(i)
     }
 
+
     const onClickAdd = () => {
         const item = {
             id,
@@ -35,7 +36,7 @@ const PizzaCard = ({ id,
             imageUrl,
             price,
             type: doughTypes[selectedDoughType],
-            size: selectedSize
+            size: sizes[selectedSize]
         }
         dispatch(addItem(item))
     }
