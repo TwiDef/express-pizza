@@ -8,21 +8,16 @@ import Page404 from './components/pages/Page404/Page404';
 
 import './App.scss';
 
-export const SearchContext = createContext('')
-
 function App() {
-    const [searchValue, setSearchValue] = useState('')
 
     return (
         <div className="App">
-            <SearchContext.Provider value={{ searchValue, setSearchValue }}>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/cart" element={<CartPage />} />
-                    <Route path="*" element={<Page404 />} />
-                </Routes>
-            </SearchContext.Provider>
+            <Header />
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="*" element={<Page404 />} />
+            </Routes>
         </div>
     );
 }

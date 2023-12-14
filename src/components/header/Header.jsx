@@ -22,6 +22,7 @@ const Header = () => {
                     <span className='header-logo__thin'>самая быстая доставка</span>
                 </div>
             </div>
+            <Search />
             <Link to="/cart" className="header-cart">
                 <div className="header-cart__wrapper">
                     <span className='header-cart__price'>{totalPrice} ₽</span>

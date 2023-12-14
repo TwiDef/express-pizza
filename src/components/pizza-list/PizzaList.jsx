@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFilters } from '../../redux/slices/sortSlice';
 import { fetchPizzas } from '../../redux/slices/pizzaSlice';
 
-import { SearchContext } from '../../App';
+/* import { SearchContext } from '../../App'; */
 import { sortList } from '../categories/Categories';
 
 import Categories from '../categories/Categories';
@@ -17,15 +17,13 @@ import sadEmoji from '../../assets/img/sad-emoji.png'
 import './PizzaList.scss';
 
 const PizzaList = () => {
-    const { categoryId, sortType, currentPage } = useSelector(state => state.filter)
+    const { categoryId, sortType, currentPage, searchValue } = useSelector(state => state.filter)
     const { items, status } = useSelector(state => state.pizza)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const isSearch = useRef(false)
     const isMounted = useRef(false)
-
-    const { searchValue } = useContext(SearchContext)
 
     const category = categoryId > 0 ? `category=${categoryId}` : ''
     const sortBy = sortType.sortProperty
