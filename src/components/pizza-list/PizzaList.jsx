@@ -11,6 +11,9 @@ import { sortList } from '../categories/Categories';
 import Categories from '../categories/Categories';
 import PizzaCard from '../pizza-card/PizzaCard';
 import Skeleton from '../skeleton/Skeleton';
+
+import sadEmoji from '../../assets/img/sad-emoji.png'
+
 import './PizzaList.scss';
 
 const PizzaList = () => {
@@ -83,10 +86,15 @@ const PizzaList = () => {
         <div className='pizzaList'>
             <Categories />
             <h2>Все пиццы</h2>
-            <ul className="pizzaCards">
-                {status === 'loading' ? skeletons : pizzas
-                }
-            </ul>
+            {status === 'error' ?
+                <div className='pizzaList-error'>
+                    <h2>Не удалось загрузить пиццы</h2>
+                    <p>попробуйте попытку позднее</p>
+                    <img src={sadEmoji} alt="" />
+                </div> :
+                <ul className="pizzaCards">
+                    {status === 'loading' ? skeletons : pizzas}
+                </ul>}
         </div>
     );
 }
