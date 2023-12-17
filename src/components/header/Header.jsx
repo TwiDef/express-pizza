@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import pizzaLogo from '../../assets/img/pizza.png';
@@ -11,6 +11,7 @@ const Header = () => {
     const totalPrice = useSelector(state => state.cart.totalPrice)
     const items = useSelector(state => state.cart.items)
 
+    const location = useLocation()
     const totalCount = items.reduce((sum, item) => sum + item.count, 0)
 
     return (
@@ -22,16 +23,21 @@ const Header = () => {
                     <span className='header-logo__thin'>самая быстая доставка</span>
                 </div>
             </div>
-            <Search />
-            <Link to="/cart" className="header-cart">
-                <div className="header-cart__wrapper">
-                    <span className='header-cart__price'>{totalPrice} ₽</span>
-                    <span className='header-cart__items'>
-                        <img src={cartLogo} alt="cartLogo" className='header-cart__items-cartlogo' />
-                        {totalCount}
-                    </span>
-                </div>
-            </Link>
+
+            {location.pathname !== '/cart' &&
+                <>
+                    <Search />
+                    <Link to="/cart" className="header-cart">
+                        <div className="header-cart__wrapper">
+                            <span className='header-cart__price'>{totalPrice} ₽</span>
+                            <span className='header-cart__items'>
+                                <img src={cartLogo} alt="cartLogo" className='header-cart__items-cartlogo' />
+                                {totalCount}
+                            </span>
+                        </div>
+                    </Link>
+                </>
+            }
         </div >
     );
 }

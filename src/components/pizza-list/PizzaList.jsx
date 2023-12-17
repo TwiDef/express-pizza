@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilters } from '../../redux/slices/sortSlice';
@@ -76,7 +76,11 @@ const PizzaList = () => {
 
 
     const pizzas = items.map(item => {
-        return <li key={item.id}><PizzaCard  {...item} /></li>
+        return <li key={item.id}>
+            <Link to={`/pizza/${item.id}`} style={{ color: '#282828' }}>
+                <PizzaCard  {...item} />
+            </Link>
+        </li>
     })
     const skeletons = [...new Array(8)].map((_, i) => <Skeleton key={i} />)
 
