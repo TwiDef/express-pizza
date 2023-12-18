@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addItem } from '../../redux/slices/cartSlice';
 
 import './PizzaCard.scss';
@@ -43,8 +44,16 @@ const PizzaCard = ({ id,
 
     return (
         <div className='card'>
-            <img className='card-img' src={imageUrl} alt="card-img" />
-            <h4 className="card-title">{title}</h4>
+            <Link
+                to={`/pizza/${id}`}
+                style={{ color: '#282828' }}>
+                <img
+                    className='card-img'
+                    src={imageUrl}
+                    alt="card-img" />
+                <h4 className="card-title">{title}</h4>
+            </Link>
+
             <div className="card-set">
                 <div className="card-set__type">
                     {types.map((type, i) => {

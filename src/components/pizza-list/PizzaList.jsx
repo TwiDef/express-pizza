@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilters } from '../../redux/slices/sortSlice';
-import { fetchPizzas } from '../../redux/slices/pizzaSlice';
+import { fetchPizzas } from '../../redux/slices/allPizzasSlice';
 
 /* import { SearchContext } from '../../App'; */
 import { sortList } from '../categories/Categories';
@@ -18,7 +18,7 @@ import './PizzaList.scss';
 
 const PizzaList = () => {
     const { categoryId, sortType, currentPage, searchValue } = useSelector(state => state.filter)
-    const { items, status } = useSelector(state => state.pizza)
+    const { items, status } = useSelector(state => state.allPizzas)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -76,11 +76,7 @@ const PizzaList = () => {
 
 
     const pizzas = items.map(item => {
-        return <li key={item.id}>
-            <Link to={`/pizza/${item.id}`} style={{ color: '#282828' }}>
-                <PizzaCard  {...item} />
-            </Link>
-        </li>
+        return <li key={item.id}><PizzaCard  {...item} /></li>
     })
     const skeletons = [...new Array(8)].map((_, i) => <Skeleton key={i} />)
 

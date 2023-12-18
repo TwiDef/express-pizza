@@ -9,7 +9,7 @@ import './MainPage.scss';
 
 const MainPage = () => {
 
-    const { status } = useSelector((state) => state.pizza)
+    const { status } = useSelector((state) => state.allPizzas)
 
     return (
         <div className='mainPage'>
