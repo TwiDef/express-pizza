@@ -96,5 +96,54 @@
         background: $white;
     }
 
+    &-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 16px;
+    }
 
+    &-btns {
+        display: flex;
+        gap: 100px;
+
+        button {
+            border-radius: 30px;
+            border: 1px solid $wood;
+            color: $wood;
+            background: none;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 700;
+            transition: all .1s;
+
+            span {
+                width: 20px;
+                height: 17px;
+                border-radius: 50%;
+                color: $white;
+                background-color: $wood;
+                display: flex;
+                justify-content: center;
+            }
+
+            &:hover {
+                background-color: $wood;
+                color: $white;
+
+                span {
+                    background-color: $white;
+                    color: $wood;
+                }
+            }
+
+            &:active {
+                scale: .98
+            }
+        }
+    }
 }

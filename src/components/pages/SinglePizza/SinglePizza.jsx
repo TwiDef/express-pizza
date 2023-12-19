@@ -58,15 +58,32 @@ const SinglePizza = () => {
                                 </p>
                                 <div className="singlePizza-set">
                                     <div className="singlePizza-set__type">
-                                        <span className='singlePizza-set__type--active'>тонкое</span>
-                                        <span className='singlePizza-set__type'>традиционное</span>
+                                        {item.types.map((type, i) => {
+                                            return <span
+                                                onClick={() => onChangeSelectedType(i)}
+                                                className={`singlePizza-set__type ${selectedDoughType === i ? "singlePizza-set__type--active" : ""}`}
+                                                key={i}>{doughTypes[type]}</span>
+                                        })}
                                     </div>
                                     <div className="singlePizza-set__size">
-                                        <span className='singlePizza-set__size--active'>33cm</span>
-                                        <span className='singlePizza-set__size'>43cm</span>
+                                        {item.sizes.map((size, i) => {
+                                            return <span
+                                                onClick={() => onChandeSelectedSize(i)}
+                                                className={`singlePizza-set__size ${selectedSize === i ? "singlePizza-set__size--active" : ""}`}>{size}cm</span>
+                                        })}
                                     </div>
                                 </div>
-                                <span className="singlePizza-price">от {item.price}p.</span>
+                                <div className="singlePizza-footer">
+                                    <span className="singlePizza-price">от {item.price}p.</span>
+                                    <div className="singlePizza-btns">
+                                        <button
+                                            onClick={() => navigate(-1)}
+                                            className="singlePizza-btn__backward">Назад</button>
+                                        <button className="singlePizza-btn__buy">+ Добавить</button>
+                                    </div>
+                                </div>
+
+
                             </div>
 
                         </div>
