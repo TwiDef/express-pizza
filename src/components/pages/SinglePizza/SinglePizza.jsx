@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSinglePizza, setStatus } from '../../../redux/slices/singlePizzaSlice';
+import { addItem } from '../../../redux/slices/cartSlice';
 
 import Spinner from '../../spinner/Spinner';
 
@@ -18,6 +19,8 @@ const SinglePizza = () => {
     const [selectedSize, setSelectedSize] = useState(0)
     const [selectedDoughType, setSelectedDoughType] = useState(0)
     const doughTypes = ['тонкое', 'традиционное']
+    const cartItem = useSelector(state => state.cart.items.find(item => item.id === id))
+    const addedCount = cartItem ? cartItem.count : 0
 
     const onChandeSelectedSize = (i) => {
         setSelectedSize(i)
@@ -34,6 +37,10 @@ const SinglePizza = () => {
         alert('Извините но такой пиццы не существует, \n возможно что-то пошло не так...');
         navigate('/')
         dispatch(setStatus('loading'))
+    }
+
+    const onClickAdd = () => {
+        dispatch(addItem(item))
     }
 
     useEffect(() => {
@@ -60,14 +67,16 @@ const SinglePizza = () => {
                                     <div className="singlePizza-set__type">
                                         {item.types.map((type, i) => {
                                             return <span
+                                                key={i}
                                                 onClick={() => onChangeSelectedType(i)}
-                                                className={`singlePizza-set__type ${selectedDoughType === i ? "singlePizza-set__type--active" : ""}`}
-                                                key={i}>{doughTypes[type]}</span>
+                                                className={`singlePizza-set__type ${selectedDoughType === i ? "singlePizza-set__type--active" : ""}`}>
+                                                {doughTypes[type]}</span>
                                         })}
                                     </div>
                                     <div className="singlePizza-set__size">
                                         {item.sizes.map((size, i) => {
                                             return <span
+                                                key={i}
                                                 onClick={() => onChandeSelectedSize(i)}
                                                 className={`singlePizza-set__size ${selectedSize === i ? "singlePizza-set__size--active" : ""}`}>{size}cm</span>
                                         })}
@@ -79,13 +88,14 @@ const SinglePizza = () => {
                                         <button
                                             onClick={() => navigate(-1)}
                                             className="singlePizza-btn__backward">Назад</button>
-                                        <button className="singlePizza-btn__buy">+ Добавить</button>
+                                        <button
+                                            onClick={onClickAdd}
+                                            className="singlePizza-btn__buy">+ Добавить
+                                            {addedCount > 0 && <span>{addedCount}</span>}
+                                        </button>
                                     </div>
                                 </div>
-
-
                             </div>
-
                         </div>
                     }
                 </>}
