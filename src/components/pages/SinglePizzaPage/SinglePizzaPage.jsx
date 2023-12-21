@@ -7,7 +7,7 @@ import { addItem } from '../../../redux/slices/cartSlice';
 
 import Spinner from '../../spinner/Spinner';
 
-import './SinglePizza.scss';
+import './SinglePizzaPage.scss';
 
 
 const SinglePizza = () => {
@@ -50,7 +50,6 @@ const SinglePizza = () => {
     /* if (!item) return <div className="spinner" ><Spinner /></div> */
 
     return (
-
         <>
             {status === 'error' ?
                 doError() :

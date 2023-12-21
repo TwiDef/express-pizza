@@ -29,7 +29,6 @@ const PizzaCard = ({ id,
         setSelectedDoughType(i)
     }
 
-
     const onClickAdd = () => {
         const item = {
             id,
