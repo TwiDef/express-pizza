@@ -1,33 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryId, setSortType } from '../../redux/slices/sortSlice';
-import './Categories.scss';
-import arrowUp from '../../assets/img/arrow-up.svg';
-import { useRef } from 'react';
 
-export const sortList = [
+import arrowUp from '../../assets/img/arrow-up.svg';
+
+import './Categories.scss';
+
+type SortItem = {
+    name: string;
+    sortProperty: string;
+}
+
+export const sortList: SortItem[] = [
     { name: 'популярности', sortProperty: 'rating' },
     { name: 'цене', sortProperty: 'price' },
-    { name: 'алфавиту', sortProperty: 'title' }
+    { name: 'алфавиту', sortProperty: 'title' },
 ]
 
-const Categories = () => {
-    const categoryId = useSelector(state => state.filter.categoryId)
-    const sortType = useSelector(state => state.filter.sortType)
+const Categories: React.FC = () => {
+    const {categoryId, sortType} = useSelector(state => state.filter)
     const dispatch = useDispatch()
 
     const [openPopup, setOpenPopup] = useState(false)
-    const categoriesBlockRef = useRef()
+    const categoriesBlockRef = useRef<HTMLDivElement>(null)
 
     const categories = ['Все', 'Мясные', 'Вегетерианские', 'Гриль', 'Острые', 'Закрытые']
 
-    const onChangeSortType = (property) => {
+    const onChangeSortType = (property: SortItem) => {
         dispatch(setSortType(property))
         setOpenPopup(false)
     }
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (event: any) => {
             if (!event.composedPath().includes(categoriesBlockRef.current)) {
                 setOpenPopup(false)
             }

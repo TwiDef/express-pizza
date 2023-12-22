@@ -5,14 +5,15 @@ import { useSelector } from 'react-redux';
 import pizzaLogo from '../../assets/img/pizza.png';
 import cartLogo from '../../assets/img/cartlogo.svg';
 import Search from '../search/Search';
+
 import './Header.scss';
 
-const Header = () => {
+const Header: React.FC = () => {
     const totalPrice = useSelector(state => state.cart.totalPrice)
     const items = useSelector(state => state.cart.items)
 
     const location = useLocation()
-    const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+    const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0)
 
     return (
         <div className='header'>

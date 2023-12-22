@@ -4,7 +4,7 @@ import { setCurrentPage } from '../../redux/slices/sortSlice';
 import ReactPaginate from 'react-paginate';
 import './Pagination.scss';
 
-const Pagination = () => {
+const Pagination: React.FC = () => {
     const dispatch = useDispatch()
     return (
         <ReactPaginate
