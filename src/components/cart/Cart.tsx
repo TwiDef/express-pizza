@@ -7,11 +7,11 @@ import cartIcon from './../../assets/img/cart.svg';
 import CartItem from '../cart-item/CartItem';
 import './Cart.scss';
 
-const Cart = (props) => {
+const Cart: React.FC = () => {
     const dispatch = useDispatch()
     const items = useSelector((state) => state.cart.items)
     const totalPrice = useSelector((state) => state.cart.totalPrice)
-    const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+    const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0)
 
     const onClickClear = () => {
         if (window.confirm('Are you sure to remove all Pizzass from cart?')) {
@@ -29,7 +29,7 @@ const Cart = (props) => {
                 <button onClick={onClickClear} className='cart-header__remove'>Очистить корзину</button>
             </div>
 
-            {items.map(item => <li key={item.id}><CartItem {...item} /></li>)}
+            {items.map((item: any) => <li key={item.id}><CartItem {...item} /></li>)}
 
             <div className="cart-footer">
                 <div className="cart-footer__total">

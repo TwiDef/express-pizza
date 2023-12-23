@@ -16,7 +16,7 @@ import sadEmoji from '../../assets/img/sad-emoji.png'
 
 import './PizzaList.scss';
 
-const PizzaList = () => {
+const PizzaList: React.FC = () => {
     const { categoryId, sortType, currentPage, searchValue } = useSelector(state => state.filter)
     const { items, status } = useSelector(state => state.allPizzas)
 
@@ -30,7 +30,9 @@ const PizzaList = () => {
     const searchBy = searchValue ? `search=${searchValue}` : ''
 
     const getPizzas = async () => {
-        dispatch(fetchPizzas({
+        dispatch(
+            // @ts-ignore
+        fetchPizzas({
             category,
             searchBy,
             currentPage,
@@ -75,7 +77,7 @@ const PizzaList = () => {
     }, [categoryId, sortBy, searchBy, currentPage])
 
 
-    const pizzas = items.map(item => {
+    const pizzas = items.map((item:any) => {
         return <li key={item.id}><PizzaCard  {...item} /></li>
     })
     const skeletons = [...new Array(8)].map((_, i) => <Skeleton key={i} />)

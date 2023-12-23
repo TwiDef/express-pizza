@@ -5,7 +5,18 @@ import { addItem } from '../../redux/slices/cartSlice';
 
 import './PizzaCard.scss';
 
-const PizzaCard = ({ id,
+type PizzaCardProps = {
+    id: number;
+    imageUrl: string;
+    title: string;
+    types:number[];
+    sizes:number[];
+    price:number;
+    category:number;
+    rating: number;
+}
+
+const PizzaCard: React.FC<PizzaCardProps> = ({ id,
     imageUrl,
     title,
     types,
@@ -15,17 +26,17 @@ const PizzaCard = ({ id,
     rating }) => {
 
     const dispatch = useDispatch()
-    const cartItem = useSelector(state => state.cart.items.find(item => item.id === id))
+    const cartItem = useSelector(state => state.cart.items.find((item:any) => item.id === id))
     const addedCount = cartItem ? cartItem.count : 0
     const [selectedSize, setSelectedSize] = useState(0)
     const [selectedDoughType, setSelectedDoughType] = useState(0)
 
     const doughTypes = ['тонкое', 'традиционное']
 
-    const onChandeSelectedSize = (i) => {
+    const onChandeSelectedSize = (i:number) => {
         setSelectedSize(i)
     }
-    const onChangeSelectedType = (i) => {
+    const onChangeSelectedType = (i:number) => {
         setSelectedDoughType(i)
     }
 

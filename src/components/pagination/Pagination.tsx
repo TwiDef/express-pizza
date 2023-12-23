@@ -15,7 +15,7 @@ const Pagination: React.FC = () => {
             onPageChange={e => dispatch(setCurrentPage(e.selected + 1))}
             pageRangeDisplayed={8}
             pageCount={2}
-            renderOnZeroPageCount={null}
+            /* renderOnZeroPageCount={null} */
         />
     );
 };

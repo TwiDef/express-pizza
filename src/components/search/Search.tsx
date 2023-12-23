@@ -1,30 +1,30 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 import { setSearchValue } from '../../redux/slices/sortSlice';
 import './Search.scss';
 
-const Search = () => {
+const Search: React.FC = () => {
 
     const dispatch = useDispatch();
 
     const [value, setValue] = useState('')
-    const searchRef = useRef()
+    const searchRef = useRef<HTMLInputElement>(null)
 
     const onClickClear = () => {
         dispatch(setSearchValue(''))
         setValue('')
-        searchRef.current.focus()
+        searchRef.current?.focus()
     }
 
     const updateSearchValue = useCallback(
-        debounce((string) => {
+        debounce((string: string) => {
             dispatch(setSearchValue(string))
         }, 1000),
         []
     )
 
-    const onChangeInput = (e) => {
+    const onChangeInput = (e: any) => {
         setValue(e.target.value)
         updateSearchValue(e.target.value)
     }
@@ -42,7 +42,7 @@ const Search = () => {
                 placeholder='Поиск...' />
             {value && <svg
                 onClick={() => onClickClear()}
-                className='search-clear' xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"><g id="info" /><g id="icons"><path d="M14.8,12l3.6-3.6c0.8-0.8,0.8-2,0-2.8c-0.8-0.8-2-0.8-2.8,0L12,9.2L8.4,5.6c-0.8-0.8-2-0.8-2.8,0   c-0.8,0.8-0.8,2,0,2.8L9.2,12l-3.6,3.6c-0.8,0.8-0.8,2,0,2.8C6,18.8,6.5,19,7,19s1-0.2,1.4-0.6l3.6-3.6l3.6,3.6   C16,18.8,16.5,19,17,19s1-0.2,1.4-0.6c0.8-0.8,0.8-2,0-2.8L14.8,12z" id="exit" /></g>
+                className='search-clear' xmlns="http://www.w3.org/2000/svg" xlinkHref="http://www.w3.org/1999/xlink"><g id="info" /><g id="icons"><path d="M14.8,12l3.6-3.6c0.8-0.8,0.8-2,0-2.8c-0.8-0.8-2-0.8-2.8,0L12,9.2L8.4,5.6c-0.8-0.8-2-0.8-2.8,0   c-0.8,0.8-0.8,2,0,2.8L9.2,12l-3.6,3.6c-0.8,0.8-0.8,2,0,2.8C6,18.8,6.5,19,7,19s1-0.2,1.4-0.6l3.6-3.6l3.6,3.6   C16,18.8,16.5,19,17,19s1-0.2,1.4-0.6c0.8-0.8,0.8-2,0-2.8L14.8,12z" id="exit" /></g>
             </svg>}
         </div>
     );
