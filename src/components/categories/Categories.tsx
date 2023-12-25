@@ -24,7 +24,7 @@ const Categories: React.FC = () => {
     const [openPopup, setOpenPopup] = useState(false)
     const categoriesBlockRef = useRef<HTMLDivElement>(null)
 
-    const categories = ['Все', 'Мясные', 'Вегетерианские', 'Гриль', 'Острые', 'Закрытые']
+    const categories: string[] = ['Все', 'Мясные', 'Вегетерианские', 'Гриль', 'Острые', 'Закрытые']
 
     const onChangeSortType = (property: SortItem) => {
         dispatch(setSortType(property))
@@ -47,7 +47,7 @@ const Categories: React.FC = () => {
     return (
         <div className='categories'>
             <ul className="categories-btn-block">
-                {categories.map((type, i) => {
+                {categories.map((type, i:number) => {
                     return <li
                         onClick={() => dispatch(setCategoryId(i))}
                         key={i}
