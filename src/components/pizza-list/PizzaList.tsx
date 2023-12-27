@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
 import { setFilters } from '../../redux/slices/sortSlice';
-import { fetchPizzas } from '../../redux/slices/allPizzasSlice';
+import { TSearchPizzaParams, fetchPizzas } from '../../redux/slices/allPizzasSlice';
+import { RootState } from '../../redux/store';
 
 /* import { SearchContext } from '../../App'; */
 import { sortList } from '../categories/Categories';
@@ -17,11 +19,11 @@ import sadEmoji from '../../assets/img/sad-emoji.png'
 import './PizzaList.scss';
 
 const PizzaList: React.FC = () => {
-    const { categoryId, sortType, currentPage, searchValue } = useSelector(state => state.filter)
-    const { items, status } = useSelector(state => state.allPizzas)
+    const { categoryId, sortType, currentPage, searchValue } = useSelector((state: RootState) => state.filter)
+    const { items, status } = useSelector((state: RootState) => state.allPizzas)
 
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const isSearch = useRef(false)
     const isMounted = useRef(false)
 
@@ -31,7 +33,6 @@ const PizzaList: React.FC = () => {
 
     const getPizzas = async () => {
         dispatch(
-            // @ts-ignore
         fetchPizzas({
             category,
             searchBy,
@@ -57,12 +58,12 @@ const PizzaList: React.FC = () => {
     // parsing params from url
     useEffect(() => {
         if (window.location.search) {
-            const params = qs.parse(window.location.search.substring(1))
-            const sortType = sortList.find(obj => obj.sortProperty === params.sortProperty)
+            const params = (qs.parse(window.location.search.substring(1)) as unknown) as TSearchPizzaParams
+            const sortType = sortList.find(obj => obj.sortProperty === params.sortBy)
 
             dispatch(setFilters({
                 ...params,
-                sortType
+                sortType : sortType ? sortType : sortList
             }))
             isSearch.current = true
         }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearItems } from '../../redux/slices/cartSlice';
+import { RootState } from '../../redux/store';
 
 import cartIcon from './../../assets/img/cart.svg';
 import CartItem from '../cart-item/CartItem';
@@ -9,8 +10,8 @@ import './Cart.scss';
 
 const Cart: React.FC = () => {
     const dispatch = useDispatch()
-    const items = useSelector((state) => state.cart.items)
-    const totalPrice = useSelector((state) => state.cart.totalPrice)
+    const items = useSelector((state: RootState) => state.cart.items)
+    const totalPrice = useSelector((state: RootState) => state.cart.totalPrice)
     const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0)
 
     const onClickClear = () => {

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addItem } from '../../redux/slices/cartSlice';
+import { RootState } from '../../redux/store';
+import { addItem, TCartItem } from '../../redux/slices/cartSlice';
+
 
 import './PizzaCard.scss';
 
@@ -26,7 +28,7 @@ const PizzaCard: React.FC<PizzaCardProps> = ({ id,
     rating }) => {
 
     const dispatch = useDispatch()
-    const cartItem = useSelector(state => state.cart.items.find((item:any) => item.id === id))
+    const cartItem = useSelector((state: RootState) => state.cart.items.find((item:any) => item.id === id))
     const addedCount = cartItem ? cartItem.count : 0
     const [selectedSize, setSelectedSize] = useState(0)
     const [selectedDoughType, setSelectedDoughType] = useState(0)
@@ -41,13 +43,14 @@ const PizzaCard: React.FC<PizzaCardProps> = ({ id,
     }
 
     const onClickAdd = () => {
-        const item = {
-            id,
+        const item: TCartItem = {
+            id: String(id),
             title,
             imageUrl,
             price,
             type: doughTypes[selectedDoughType],
-            size: sizes[selectedSize]
+            size: sizes[selectedSize],
+            count: 0
         }
         dispatch(addItem(item))
     }

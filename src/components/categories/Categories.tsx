@@ -1,24 +1,26 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryId, setSortType } from '../../redux/slices/sortSlice';
+import { setCategoryId, setSortType,TSortType } from '../../redux/slices/sortSlice';
+import { RootState } from '../../redux/store';
+import { SortPropertyEnum } from '../../redux/slices/sortSlice';
 
 import arrowUp from '../../assets/img/arrow-up.svg';
 
 import './Categories.scss';
 
-type SortItem = {
+/* type SortItem = {
     name: string;
-    sortProperty: string;
-}
+    sortProperty: SortPropertyEnum;
+} */
 
-export const sortList: SortItem[] = [
-    { name: 'популярности', sortProperty: 'rating' },
-    { name: 'цене', sortProperty: 'price' },
-    { name: 'алфавиту', sortProperty: 'title' },
+export const sortList: TSortType[] = [
+    { name: 'популярности', sortProperty: SortPropertyEnum.RATING },
+    { name: 'цене', sortProperty: SortPropertyEnum.PRICE },
+    { name: 'алфавиту', sortProperty: SortPropertyEnum.TITLE },
 ]
 
 const Categories: React.FC = () => {
-    const {categoryId, sortType} = useSelector(state => state.filter)
+    const {categoryId, sortType} = useSelector((state: RootState) => state.filter)
     const dispatch = useDispatch()
 
     const [openPopup, setOpenPopup] = useState(false)
@@ -26,7 +28,7 @@ const Categories: React.FC = () => {
 
     const categories: string[] = ['Все', 'Мясные', 'Вегетерианские', 'Гриль', 'Острые', 'Закрытые']
 
-    const onChangeSortType = (property: SortItem) => {
+    const onChangeSortType = (property: TSortType) => {
         dispatch(setSortType(property))
         setOpenPopup(false)
     }
